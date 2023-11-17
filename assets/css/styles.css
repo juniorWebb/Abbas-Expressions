@@ -39,16 +39,89 @@ p {
   font-size: 0.8rem;
 }
 
-/* .hidden{
-    opacity: 0;
-    transition: all 1s;
-}
-
-.show{
-    opacity: 1;
+/* .section{
+  opacity: 0;
 } */
 
+/* Keyframes */
+
+.fade-in{
+  animation: test 2s ease-in both;
+  opacity: 0;
+}
+
+@keyframes test{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.fade-up{
+  animation: test-two 2s ease-in both;
+  opacity: 0;
+}
+
+@keyframes test-two{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+.bounce{
+  animation: test-three 2s ease infinite;
+}
+
+@keyframes test-three{
+  0%,20%,50%,100%{
+    transform: translateY(0);
+  }
+  40%{
+    transform: translateY(-5px);
+  }
+  60%{
+    transform: translateY(-3px);
+  }
+}
+.smooth{
+  animation: test-four 3s ease infinite alternate;
+}
+
+@keyframes test-four{
+  0%,20%,100%{
+    transform: translateY(0);
+  }
+  40%{
+    transform: translateY(5px);
+  }
+  60%{
+    transform: translateY(-3px);
+  }
+}
+
+@media(prefers-reduced-motion){
+  .fade-in, .bounce{
+    transition: none;
+  }
+}
+
+
 /**** Header ****/
+
+.nav-bar {
+  position: absolute;
+  width: 100%;
+  padding: 1.25em 0em 1.25em 0.6em;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
 
 #logo {
   color: #fff;
@@ -56,17 +129,6 @@ p {
   font-size: 0.9rem;
   text-transform: capitalize;
   z-index: 400;
-}
-
-.nav-bar {
-  position: absolute;
-  width: 100%;
-  padding: 1.25em 0em 1.25em 0.6em;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.4rem;
 }
 
 .backdrop {
@@ -209,7 +271,7 @@ p {
 }
 
 .hero .hero-content a {
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
   display: inline-block;
   font-size: 0.8rem;
   padding: 0.4em 1em;
@@ -218,11 +280,12 @@ p {
   background: rgba(238, 238, 238, 0.6);
   color: var(--secondary);
   border: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .hero .hero-content a:hover {
-  background: var(--bg-color);
+  box-shadow: 0 0 10px var(--bg-color);
+  background: rgb(255, 255, 255);
 }
 
 .portfolio,
@@ -260,9 +323,32 @@ p {
 .skill-set .row li {
   width: 30%;
   height: 18%;
-  box-shadow: 0px 2px 8px rgba(115, 115, 115, 0.2);
+  box-shadow: 0px 2px 10px rgba(154, 154, 154, 0.2);
   padding: 1.4em;
   flex-grow: 1;
+  transform: scale(1);
+  transition: all 300ms ease-out;
+}
+.skill-set .row .skill-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.skill-set .row li:hover {
+  transform: scale(1.05);
+  background-color: var(--secondary);
+
+}
+/* .skill-set .row li:hover .skill-content{
+  transition: all 600ms ease-in;
+} */
+
+.skill-set .row li:hover h3, .skill-set .row li:hover b{
+  color: var(--primary);
+}
+.skill-set .row li:hover p,.skill-set .row li:hover .skill-head i{
+  color: #fff;
 }
 
 .skill-set h3 {
@@ -272,7 +358,7 @@ p {
 .portfolio .row {
   width: 92%;
   display: flex;
-  gap: 0.8rem;
+  gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
@@ -283,9 +369,32 @@ p {
   width: 25vw;
   flex-grow: 1;
 }
+.portfolio .row li::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 323px;
+  background-color: rgba(255, 255, 255, 0.1);
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  transform: scaleX(0);
+}
+.portfolio .row li:hover::before {
+  animation: flash 250ms ease-in;
+}
+@keyframes flash{
+  from{
+    transform: scaleX(0);
+  }
+  to{
+    transform: scaleX(1);
+  }
+}
 .portfolio .row li img {
   width: 100%;
   border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(112, 112, 112, 0.3);
 }
 .portfolio .row .content-box {
   position: absolute;
@@ -390,15 +499,19 @@ p {
 .connect {
   padding: 1em;
 }
-.connect .social-links a {
-  margin-right: 0.5rem;
+.connect h2 {
+  margin-bottom: 1rem;
 }
 .connect .social-links i {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  transition: all 0.3s ease-in-out;
   color: var(--secondary);
-  transition: color 0.2s ease-in-out;
+  transform: translateY(0);
 }
 .connect .social-links i:hover {
-  color: var(--primary-hover);
+  transform: translateY(-6px);
+  color: var(--primary);
 }
 
 footer {
@@ -415,12 +528,16 @@ footer {
   font-size: 0.7rem;
   box-shadow: 0px 2px 8px var(--primary-hover);
   font-weight: 700;
-  transition: all 300ms ease-out;
 }
 
 /**** Media Queries ****/
 
-@media (max-width: 690px) {
+@media (max-width: 991px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
+@media (max-width: 780px) {
   .portfolio .row,
   .skill-set .row {
     flex-direction: column;

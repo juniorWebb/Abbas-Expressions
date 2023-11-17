@@ -1,13 +1,21 @@
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    console.log(entry);
-    if (entry.isIntersecting) {
-      entry.target.classlist.add("show");
-    } else {
-      entry.target.classlist.remove("show");
-    }
-  });
-});
+const watcher = document.querySelector(".hamburger"); 
+const sections = document.querySelectorAll(".section"); 
 
-const hiddenElements = document.querySelectorAll(".hidden");
-hiddenElements.forEach((el) => observer.observe(el));
+const observerOptions = {
+  root: null,
+  threshold: 0.25,
+  rootMargin: "-50px 0px 0px 0px",
+}
+
+const observer = new IntersectionObserver((entries) =>{
+  entries.forEach(entry =>{
+    if(!entry.isIntersecting){
+      return;
+    } 
+    entry.target.classList.toggle("section");
+    observer.unobserve(entry.target);
+  })
+}, observerOptions);
+
+sections.forEach(section => observer.observe(section))
+ ;
