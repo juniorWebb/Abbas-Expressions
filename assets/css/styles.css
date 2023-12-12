@@ -1,7 +1,7 @@
 :root {
   --primary: rgb(122, 137, 199);
-  --secondary: rgb(42, 42, 42);
-  --secondary-main: rgb(148, 55, 206);
+  --secondary: rgb(148, 55, 206);
+  --black: rgb(42, 42, 42);
 
   --bg-color: rgb(238, 238, 238);
 
@@ -47,35 +47,65 @@ p {
 
 /* Keyframes */
 
-.fade-in{
-  animation: test 2s ease-in both;
+.drop-down{
   opacity: 0;
+  transition: all 300ms ease-out;
 }
 
-@keyframes test{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
+.fade{
+  opacity: 0;
+  transition: all 2s ease-out;
+  transition-delay: 100ms;
+}
+
+.fade-in{
+  opacity: 0;
+  transform: translate(-100px, 0);
+  transition: all 800ms ease-out;
+  transition-delay: 200ms;
 }
 
 .fade-up{
-  animation: test-two 2s ease-in both;
   opacity: 0;
+  transform: translate(0, 60px);
+  transition: all 600ms ease-out;
+  transition-delay: 100ms;
 }
 
-@keyframes test-two{
-  from{
-    opacity: 0;
-  }
-  to{
-    opacity: 1;
-  }
+li:nth-child(2){
+  transition-delay: 150ms;
 }
+li:nth-child(3){
+  transition-delay: 200ms;
+}
+li:nth-child(4){
+  transition-delay: 250ms;
+}
+li:nth-child(5){
+  transition-delay: 300ms;
+}
+li:nth-child(6){
+  transition-delay: 350ms;
+}
+
+.links-up{
+  opacity: 0;
+  transform: translate(0, -40px);
+  transition: all 600ms ease-out;
+  transition-delay: 100ms;
+}
+
+.social-links li:nth-child(2){
+  transition-delay: 200ms;
+}
+
+.appear{
+  opacity: 1;
+  transform: translate(0,0);
+}
+
 .bounce{
-  animation: test-three 2s ease infinite;
+  animation: test-three 2.5s ease infinite;
 }
 
 @keyframes test-three{
@@ -89,24 +119,9 @@ p {
     transform: translateY(-3px);
   }
 }
-.smooth{
-  animation: test-four 3s ease infinite alternate;
-}
-
-@keyframes test-four{
-  0%,20%,100%{
-    transform: translateY(0);
-  }
-  40%{
-    transform: translateY(5px);
-  }
-  60%{
-    transform: translateY(-3px);
-  }
-}
 
 @media(prefers-reduced-motion){
-  .fade-in, .bounce{
+  .fade-in, .fade,.fade-up,.links-up, .bounce{
     transition: none;
   }
 }
@@ -153,7 +168,7 @@ p {
 
 .nav-links {
   width: 30rem;
-  background: linear-gradient(45deg, rgba(93, 105, 156, 0.6),rgba(149, 55, 206,0.4));
+  background: linear-gradient(45deg, rgba(93, 105, 156, 0.6),rgba(149, 55, 206,0.6));
   backdrop-filter: blur(10px);
   transition: all 0.2s ease-in;
   z-index: 600;
@@ -198,7 +213,6 @@ p {
 
 .hamburger {
   position: fixed;
-  width: 8%;
   padding: 0.9rem 0;
   z-index: 700;
   pointer-events: cursor;
@@ -215,7 +229,7 @@ p {
 .bar1,
 .bar2,
 .bar3 {
-  background: var(--secondary);
+  background: var(--black);
   height: 0.2rem;
   display: block;
   margin: 0.22rem auto;
@@ -284,7 +298,7 @@ p {
   text-transform: capitalize;
   font-weight: 600;
   background: rgba(238, 238, 238, 0.6);
-  color: var(--secondary);
+  color: var(--black);
   border: none;
   transition: all 0.5s ease-in-out;
 }
@@ -646,9 +660,27 @@ color: var(--primary);
 .soon-contents h1{
   font-size: 18vw;
 }
+.soon-contents .swing{
+  font-size: 18vw;
+  position: absolute;
+  animation: swing ease-in-out 1.6s infinite alternate;
+  color: #dd2a7b;
+  left: -100px;
+  top: -60px;
+
+}
+
+@keyframes swing{
+  from{
+    transform: rotate(30deg);
+  }
+  to{
+    transform: rotate(-30deg);
+  }
+}
 
 .soon-contents h3{
-  color: var(--secondary);
+  color: var(--black);
 }
 .soon-contents p{
   font-size: 0.8em;
@@ -656,7 +688,7 @@ color: var(--primary);
 }
 .soon-contents p a{
   text-transform: capitalize;
-  color: var(--secondary-main);
+  color: var(--secondary);
   transition: all .3s ease-out;
 }
 .soon-contents p a:hover{
@@ -678,15 +710,26 @@ color: var(--primary);
 
 .connect {
   padding: 1em;
+  margin: 3rem 0;
 }
 .connect h2 {
+  width: 260px;
   margin-bottom: 0.6rem;
+  transform: translate(0,0);
+  transition: all 2s ease-out;
+}
+.connect h2:hover>i {
+  color: var(--secondary);
+  transform: translate(5px,-5px);
+}
+.connect .social-links {
+  display: flex;
+  gap: 0.6rem;
 }
 .connect .social-links i {
   font-size: 1.4rem;
-  margin-right: 0.5rem;
-  transition: all 0.3s ease-in;
-  color: var(--secondary);
+  transition: all 0.3s ease-out;
+  color: var(--black);
 }
 .connect .social-links i:hover {
   /* Start the shake animation and make the animation last for 0.5 seconds */
@@ -730,7 +773,7 @@ footer {
 }
 .gradContainer .trademark {
   position: relative;
-  color: var(--secondary);
+  color: var(--black);
   font-size: 0.7rem;
   padding: 5px 10px;
   border-radius: 6px;
