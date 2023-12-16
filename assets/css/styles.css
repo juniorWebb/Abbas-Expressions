@@ -71,6 +71,38 @@ p {
   transition: all 600ms ease-out;
   transition-delay: 100ms;
 }
+.section-up{
+  transition: all 600ms ease-out;
+  transition-delay: 100ms;
+  animation: section-up 1s ease;
+}
+
+@keyframes section-up{
+  from{
+    transform: translate(0, 80px);
+    opacity: 0;
+  }
+  to{
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+.card-up{
+  opacity: 0;
+  transition: all 800ms ease-out;
+  transition-delay: 100ms;
+  animation: card-up 1s ease;
+}
+
+@keyframes card-up{
+  from{
+    transform: translate(0, 60px);
+  }
+  to{
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
 
 li:nth-child(2){
   transition-delay: 150ms;
@@ -168,7 +200,7 @@ li:nth-child(6){
 
 .nav-links {
   width: 30rem;
-  background: linear-gradient(45deg, rgba(93, 105, 156, 0.6),rgba(149, 55, 206,0.6));
+  background: linear-gradient(45deg, rgba(93, 105, 156, 0.8),rgba(149, 55, 206,0.8));
   backdrop-filter: blur(10px);
   transition: all 0.2s ease-in;
   z-index: 600;
@@ -261,6 +293,123 @@ li:nth-child(6){
 .hamburger.is-active .bar3 {
   transform: rotate(45deg) translate(-3px, -4px);
   background: #fff;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#first {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url("/assets/resource/light.png"),
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5));
+  background-blend-mode: darken;
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--bg-color);
+}
+
+.section .section-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68%;
+  text-align: center;
+
+}
+.section  #four {
+  margin: 7rem auto;
+}
+
+.section .section-content p {
+  font-size: 0.9rem;
+}
+
+.section .social-links {
+  margin: 1rem auto;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.section .social-links i{
+  font-size: 1.6rem;
+}
+
+.section .gradContainer {
+  position: relative;
+  width: 10rem;
+  margin: 16rem auto 0 auto;
+}
+.gradContainer .trademark {
+  position: relative;
+  color: var(--black);
+  font-size: 0.7rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  background: var(--bg-color);
+}
+.gradContainer::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgb(93, 105, 156),rgb(148, 55, 206));
+  filter: blur(10px);
+}
+
+#cards{
+  margin-top: 1.4rem;
+  max-width: 1190px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#cards li{
+  flex-grow: 1;
+  width: 300px;
+  height: 220px;
+  /* background-color: #210455; */
+  background-color: rgb(78, 22, 183);
+  color: #fefefe;
+  padding: 1em;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0px rgb(18, 18, 18);
+  transform: translate(0, 0);
+  transition: all 250ms ease-out;
+}
+#cards li:hover{
+  transform: translate(-4px, -2px);
+  box-shadow: 5px 5px 0px rgb(18, 18, 18);
+}
+#cards li span{
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-align: left;
+  margin-bottom: 0.8rem;
+}
+#cards li .card_content{
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.swiper-pagination-bullet-active{
+  background: #4f16b7;
 }
 
 .hero {
@@ -722,27 +871,26 @@ color: var(--primary);
   color: var(--secondary);
   transform: translate(5px,-5px);
 }
-.connect .social-links {
+.social-links {
   display: flex;
   gap: 0.6rem;
 }
-.connect .social-links i {
+.social-links i {
   font-size: 1.4rem;
   transition: all 0.3s ease-out;
   color: var(--black);
 }
-.connect .social-links i:hover {
+.social-links i:hover {
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s;
   
   /* When the animation is finished, start again */
   animation-iteration-count: infinite;
 }
-.connect .social-links .first:hover {
-  /* color: #128c7e; */
-  color: #075e54;
+.social-links .first:hover {
+  color: #128c7e;
 }
-.connect .social-links .second:hover {
+.social-links .second:hover {
   color: #dd2a7b;
 }
 
@@ -810,6 +958,7 @@ footer {
   }
 }
 @media (max-width: 644px) {
+
   .nav-bar {
     padding: 1.25em;
   }
@@ -857,7 +1006,7 @@ footer {
 
   .nav-links li a {
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
   }
 

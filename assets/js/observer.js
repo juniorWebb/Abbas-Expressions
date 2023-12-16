@@ -1,4 +1,4 @@
-const faders = document.querySelectorAll(".fade, .fade-in, .fade-up, .links-up");
+const faders = document.querySelectorAll(".fade, .fade-in, .fade-up, .links-up, .card-up");
 
 appearOptions = {
   threshold : 0.5,
